@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RiverpodScreen extends StatefulWidget {
   const RiverpodScreen({super.key});
@@ -42,23 +41,11 @@ class _RiverpodScreenState extends State<RiverpodScreen>
         controller: _tabController,
         children: const [
           // Character Tab View
-          SizedBox(
-            child: Center(
-              child: Text('Characters'),
-            ),
-          ),
+          // CharacterList(characters: characters, isLoading: isLoading)
           // Location Tab View
-          SizedBox(
-            child: Center(
-              child: Text('Locations'),
-            ),
-          ),
+          // LocationList(locations: locations, isLoading: isLoading),
           // Episode Tab View
-          SizedBox(
-            child: Center(
-              child: Text('Episodes'),
-            ),
-          ),
+          // EpisodeList(episodes: episodes, isLoading: isLoading),
         ],
       ),
     );
