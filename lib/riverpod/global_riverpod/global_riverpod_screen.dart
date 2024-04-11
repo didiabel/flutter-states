@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstates/BLOC/example_bloc/example_bloc.dart';
-import 'package:flutterstates/BLOC/example_bloc/example_bloc_event.dart';
-import 'package:flutterstates/BLOC/example_bloc/example_bloc_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterstates/riverpod/global_riverpod/global_riverpod.dart';
 import 'package:flutterstates/screens/character/character_list.dart';
 import 'package:flutterstates/screens/episode/episode_list.dart';
 import 'package:flutterstates/screens/location/location_list.dart';
 
-class BLOCScreen extends StatefulWidget {
-  const BLOCScreen({super.key});
+class GlobalRiverpodScreen extends ConsumerStatefulWidget {
+  const GlobalRiverpodScreen({super.key});
 
   @override
-  State<BLOCScreen> createState() => _BLOCScreenState();
+  ConsumerState<GlobalRiverpodScreen> createState() =>
+      _GlobalRiverpodScreenState();
 }
 
-class _BLOCScreenState extends State<BLOCScreen>
+class _GlobalRiverpodScreenState extends ConsumerState<GlobalRiverpodScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -22,7 +21,7 @@ class _BLOCScreenState extends State<BLOCScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    BlocProvider.of<BLOC>(context).add(const InitializeBLOCEvent());
+    ref.read(globalRiverpodState.notifier).fetchData();
   }
 
   @override
@@ -35,7 +34,7 @@ class _BLOCScreenState extends State<BLOCScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BLOC Screen'),
+        title: const Text('Global Riverpod Screen'),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
@@ -45,22 +44,24 @@ class _BLOCScreenState extends State<BLOCScreen>
           ],
         ),
       ),
-      body: BlocBuilder<BLOC, BLOCState>(
-        builder: (context, state) {
+      body: Consumer(
+        builder: (context, watch, child) {
+          final state = ref.watch(globalRiverpodState);
           return TabBarView(
             controller: _tabController,
             children: [
               CharacterList(
                 characters: state.characters,
-                isLoading: state.loadingCharacters,
+                isLoading: state.isCharactersLoading,
               ),
               LocationList(
-                  locations: state.locations,
-                  isLoading: state.loadingLocations),
+                locations: state.locations,
+                isLoading: state.isLocationsLoading,
+              ),
               EpisodeList(
                 episodes: state.episodes,
-                isLoading: state.loadingEpisodes,
-              )
+                isLoading: state.isEpisodesLoading,
+              ),
             ],
           );
         },

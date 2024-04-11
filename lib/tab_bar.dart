@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstates/BLOC/bloc_example/example_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterstates/BLOC/example_bloc/example_bloc.dart';
 import 'package:flutterstates/BLOC/bloc_screen.dart';
-import 'package:flutterstates/riverpod/riverpod_screen.dart';
+import 'package:flutterstates/riverpod/global_riverpod/global_riverpod_screen.dart';
+import 'package:flutterstates/riverpod/individual_state/riverpod_screen.dart';
 
 class TabBarScreen extends StatefulWidget {
   const TabBarScreen({Key? key}) : super(key: key);
@@ -29,7 +31,9 @@ class _TabBarState extends State<TabBarScreen> {
       create: (context) => BLOC(),
       child: const BLOCScreen(),
     ),
-    const RiverpodScreen(),
+    const ProviderScope(
+      child: RiverpodScreen(),
+    ),
   ];
 
   @override

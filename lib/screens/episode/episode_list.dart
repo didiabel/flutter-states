@@ -6,8 +6,11 @@ class EpisodeList extends StatelessWidget {
   final List<Episode> episodes;
   final bool isLoading;
 
-  const EpisodeList(
-      {super.key, required this.episodes, required this.isLoading});
+  const EpisodeList({
+    super.key,
+    required this.episodes,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {

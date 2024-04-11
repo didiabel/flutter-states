@@ -6,8 +6,11 @@ class LocationList extends StatelessWidget {
   final List<Location> locations;
   final bool isLoading;
 
-  const LocationList(
-      {super.key, required this.locations, required this.isLoading});
+  const LocationList({
+    super.key,
+    required this.locations,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {

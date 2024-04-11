@@ -9,7 +9,7 @@ class CharacterList extends StatelessWidget {
   const CharacterList({
     super.key,
     required this.characters,
-    required this.isLoading,
+    this.isLoading = false,
   });
 
   @override

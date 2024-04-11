@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstates/BLOC/bloc_example/example_bloc_event.dart';
-import 'package:flutterstates/BLOC/bloc_example/example_bloc_state.dart';
+import 'package:flutterstates/BLOC/example_bloc/example_bloc_event.dart';
+import 'package:flutterstates/BLOC/example_bloc/example_bloc_state.dart';
 import 'package:flutterstates/apis/apis.dart';
 
 class BLOC extends Bloc<BLOCEvent, BLOCState> {
@@ -17,9 +17,12 @@ class BLOC extends Bloc<BLOCEvent, BLOCState> {
     on<LoadLocationsEvent>((event, emit) async {
       emit(state.copyWith(locations: [], loadingLocations: true));
 
-      final locations = await api.getLocations();
-
-      emit(state.copyWith(locations: locations, loadingLocations: false));
+      try {
+        final locations = await api.getLocations();
+        emit(state.copyWith(locations: locations, loadingLocations: false));
+      } catch (e) {
+        emit(state.copyWith(loadingLocations: false));
+      }
     });
 
     on<LoadEpisodesEvent>((event, emit) async {
