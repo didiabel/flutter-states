@@ -14,15 +14,15 @@ class CharacterList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
+
     return ListView.builder(
       itemCount: characters.length,
       itemBuilder: (context, index) {
-        if (isLoading) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        }
-
         if (characters.isEmpty) {
           return const Center(
             child: Text('No characters found'),

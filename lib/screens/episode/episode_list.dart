@@ -14,15 +14,14 @@ class EpisodeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
     return ListView.builder(
       itemCount: episodes.length,
       itemBuilder: (context, index) {
-        if (isLoading) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        }
-
         if (episodes.isEmpty) {
           return const Center(
             child: Text('No episodes found'),

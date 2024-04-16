@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterstates/riverpod/individual_state/riverpod_states.dart';
+import 'package:flutterstates/riverpod/individual_states/riverpod_states.dart';
 import 'package:flutterstates/screens/character/character_list.dart';
 import 'package:flutterstates/screens/episode/episode_list.dart';
 import 'package:flutterstates/screens/location/location_list.dart';

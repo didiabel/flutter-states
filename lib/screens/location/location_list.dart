@@ -14,15 +14,15 @@ class LocationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
+
     return ListView.builder(
       itemCount: locations.length,
       itemBuilder: (context, index) {
-        if (isLoading) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        }
-
         if (locations.isEmpty) {
           return const Center(
             child: Text('No locations found'),

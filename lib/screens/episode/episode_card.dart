@@ -23,22 +23,12 @@ class EpisodeCard extends StatelessWidget {
               'Air Date: ${episode.airDate}',
               style: Theme.of(context).textTheme.subtitle2,
             ),
-            // const SizedBox(height: 8),
-            // Text(
-            //   'Characters: ${episode.characters.join(', ')}',
-            //   style: Theme.of(context).textTheme.subtitle2,
-            // ),
             const SizedBox(height: 8),
             Text(
               'Created: ${episode.created.toIso8601String()}',
               style: Theme.of(context).textTheme.subtitle2,
             ),
             const SizedBox(height: 8),
-            // ElevatedButton(
-            //   onPressed: () =>
-            //       launchUrl(Uri.parse(episode.url), context: context),
-            //   child: const Text('View More'),
-            // ),
           ],
         ),
       ),

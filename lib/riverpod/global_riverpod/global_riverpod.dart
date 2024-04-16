@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterstates/apis/apis.dart';
 import 'package:flutterstates/models/character.dart';
@@ -47,8 +49,9 @@ class StateController extends StateNotifier<AppState> {
     try {
       final locations = await APIs.instance.getLocations();
       state = state.copyWith(locations: locations, isLocationsLoading: false);
+      print('got  global riverpod locations');
     } catch (error) {
-      // Handle error
+      log('$error');
     }
   }
 
@@ -56,8 +59,9 @@ class StateController extends StateNotifier<AppState> {
     try {
       final episodes = await APIs.instance.getEpisodes();
       state = state.copyWith(episodes: episodes, isEpisodesLoading: false);
+      print('got  global riverpod episodes');
     } catch (error) {
-      // Handle error
+      log('$error');
     }
   }
 
@@ -66,19 +70,17 @@ class StateController extends StateNotifier<AppState> {
       final characters = await APIs.instance.getCharacters();
       state =
           state.copyWith(characters: characters, isCharactersLoading: false);
+      print('got  global riverpod characters');
     } catch (error) {
-      // Handle error
+      log('$error');
     }
   }
 
   Future<void> fetchData() async {
-    state = state.copyWith(
-      isLocationsLoading: true,
-      isCharactersLoading: true,
-      isEpisodesLoading: true,
-    );
-
+    print('fetching global riverpod data');
     fetchLocations();
+    fetchCharacters();
+    fetchEpisodes();
   }
 
   void removeLocationById(int id) {

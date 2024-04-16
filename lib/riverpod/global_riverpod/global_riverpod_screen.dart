@@ -43,6 +43,15 @@ class _GlobalRiverpodScreenState extends ConsumerState<GlobalRiverpodScreen>
             Tab(text: 'Episodes'),
           ],
         ),
+        actions: [
+          MaterialButton(
+            color: Colors.orange,
+            child: const Text("Get Data"),
+            onPressed: () {
+              ref.read(globalRiverpodState.notifier).fetchData();
+            },
+          ),
+        ],
       ),
       body: Consumer(
         builder: (context, watch, child) {
