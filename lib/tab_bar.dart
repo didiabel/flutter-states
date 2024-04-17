@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterstates/BLOC/example_bloc/example_bloc.dart';
 import 'package:flutterstates/BLOC/bloc_screen.dart';
-import 'package:flutterstates/riverpod/global_riverpod/global_riverpod_screen.dart';
 import 'package:flutterstates/riverpod/individual_states/riverpod_screen.dart';
 
 class TabBarScreen extends StatefulWidget {

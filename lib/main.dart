@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstates/home_screen.dart';
-import 'package:flutterstates/tab_bar.dart';
 
 void main() {
   runApp(const MyApp());
