@@ -3,8 +3,13 @@ import 'package:flutterstates/models/episode.dart';
 
 class EpisodeCard extends StatelessWidget {
   final Episode episode;
+  final Function(int episodeId) onDeleteEpisode;
 
-  const EpisodeCard({super.key, required this.episode});
+  const EpisodeCard({
+    super.key,
+    required this.episode,
+    required this.onDeleteEpisode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,20 @@ class EpisodeCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Episode ${episode.episode} - ${episode.name}',
-              style: Theme.of(context).textTheme.headline6,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Episode ${episode.episode} - ${episode.name}',
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () => onDeleteEpisode(episode.id),
+                    icon: const Icon(Icons.delete)),
+              ],
             ),
             const SizedBox(height: 8),
             Text(

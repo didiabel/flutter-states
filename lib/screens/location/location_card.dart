@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutterstates/models/location.dart'; // Import your Character model here
 
 class LocationCard extends StatelessWidget {
-  final Location location; // Pass the Location object as a parameter
+  final Location location;
+  final Function(int locationId) onDeleteLocation;
 
-  const LocationCard({Key? key, required this.location}) : super(key: key);
+  const LocationCard({
+    super.key,
+    required this.location,
+    required this.onDeleteLocation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,23 @@ class LocationCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    location.name,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () => onDeleteLocation(location.id),
+                    icon: const Icon(Icons.delete)),
+              ],
+            ),
             Text(
               location.name,
               style: const TextStyle(

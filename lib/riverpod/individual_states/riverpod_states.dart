@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterstates/models/character.dart';
 import 'package:flutterstates/models/episode.dart';
 import 'package:flutterstates/models/location.dart';
-import 'package:flutterstates/riverpod/individual_state/riverpod_providers.dart';
+import 'package:flutterstates/riverpod/individual_states/riverpod_providers.dart';
 
 class StateController extends StateNotifier<List<Location>> {
   StateController(super.state);

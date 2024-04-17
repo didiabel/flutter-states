@@ -3,10 +3,12 @@ import 'package:flutterstates/models/character.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
+  final Function(int characterId) onDeleteCharacter;
 
   const CharacterCard({
     super.key,
     required this.character,
+    required this.onDeleteCharacter,
   });
 
   @override
@@ -17,9 +19,20 @@ class CharacterCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              character.name,
-              style: Theme.of(context).textTheme.headline6,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    character.name,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () => onDeleteCharacter(character.id),
+                    icon: const Icon(Icons.delete)),
+              ],
             ),
             Text(
               character.status,

@@ -57,19 +57,37 @@ class _RiverpodScreenState extends ConsumerState<RiverpodScreen>
           Consumer(
             builder: (context, watch, child) {
               final characters = ref.watch(charactersStateProvider);
-              return CharacterList(characters: characters);
+              return CharacterList(
+                  characters: characters,
+                  onDeleteCharacter: (characterId) {
+                    ref
+                        .read(charactersStateProvider.notifier)
+                        .removeCharacterById(characterId);
+                  });
             },
           ),
           Consumer(
             builder: (context, watch, child) {
               final locations = ref.watch(locationsStateProvider);
-              return LocationList(locations: locations);
+              return LocationList(
+                  locations: locations,
+                  onDeleteLocation: (locationId) {
+                    ref
+                        .read(locationsStateProvider.notifier)
+                        .removeLocationById(locationId);
+                  });
             },
           ),
           Consumer(
             builder: (context, watch, child) {
               final episodes = ref.watch(episodesStateProvider);
-              return EpisodeList(episodes: episodes);
+              return EpisodeList(
+                  episodes: episodes,
+                  onDeleteEpisode: (episodeId) {
+                    ref
+                        .read(episodesStateProvider.notifier)
+                        .removeEpisodeById(episodeId);
+                  });
             },
           ),
         ],

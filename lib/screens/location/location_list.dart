@@ -5,11 +5,13 @@ import 'package:flutterstates/screens/location/location_card.dart';
 class LocationList extends StatelessWidget {
   final List<Location> locations;
   final bool isLoading;
+  final void Function(int locationId) onDeleteLocation;
 
   const LocationList({
     super.key,
     required this.locations,
     this.isLoading = false,
+    required this.onDeleteLocation,
   });
 
   @override
@@ -29,7 +31,10 @@ class LocationList extends StatelessWidget {
           );
         }
 
-        return LocationCard(location: locations[index]);
+        return LocationCard(
+          location: locations[index],
+          onDeleteLocation: onDeleteLocation,
+        );
       },
     );
   }

@@ -5,11 +5,13 @@ import 'package:flutterstates/screens/character/character_card.dart';
 class CharacterList extends StatelessWidget {
   final List<Character> characters;
   final bool isLoading;
+  final void Function(int characterId) onDeleteCharacter;
 
   const CharacterList({
     super.key,
     required this.characters,
     this.isLoading = false,
+    required this.onDeleteCharacter,
   });
 
   @override
@@ -29,7 +31,10 @@ class CharacterList extends StatelessWidget {
           );
         }
 
-        return CharacterCard(character: characters[index]);
+        return CharacterCard(
+          character: characters[index],
+          onDeleteCharacter: onDeleteCharacter,
+        );
       },
     );
   }

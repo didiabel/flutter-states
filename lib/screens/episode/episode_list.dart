@@ -5,11 +5,13 @@ import 'package:flutterstates/screens/episode/episode_card.dart';
 class EpisodeList extends StatelessWidget {
   final List<Episode> episodes;
   final bool isLoading;
+  final Function(int episodeId) onDeleteEpisode;
 
   const EpisodeList({
     super.key,
     required this.episodes,
     this.isLoading = false,
+    required this.onDeleteEpisode,
   });
 
   @override
@@ -28,7 +30,10 @@ class EpisodeList extends StatelessWidget {
           );
         }
 
-        return EpisodeCard(episode: episodes[index]);
+        return EpisodeCard(
+          episode: episodes[index],
+          onDeleteEpisode: onDeleteEpisode,
+        );
       },
     );
   }

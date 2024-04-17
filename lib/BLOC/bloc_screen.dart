@@ -53,14 +53,29 @@ class _BLOCScreenState extends State<BLOCScreen>
               CharacterList(
                 characters: state.characters,
                 isLoading: state.loadingCharacters,
+                onDeleteCharacter: (characterId) {
+                  BlocProvider.of<BLOC>(context).add(
+                    RemoveCharacterEvent(id: characterId),
+                  );
+                },
               ),
               LocationList(
-                  locations: state.locations,
-                  isLoading: state.loadingLocations),
+                locations: state.locations,
+                isLoading: state.loadingLocations,
+                onDeleteLocation: (locationId) {
+                  BlocProvider.of<BLOC>(context).add(
+                    RemoveLocationEvent(id: locationId),
+                  );
+                },
+              ),
               EpisodeList(
-                episodes: state.episodes,
-                isLoading: state.loadingEpisodes,
-              )
+                  episodes: state.episodes,
+                  isLoading: state.loadingEpisodes,
+                  onDeleteEpisode: (episodeId) {
+                    BlocProvider.of<BLOC>(context).add(
+                      RemoveEpisodeEvent(id: episodeId),
+                    );
+                  })
             ],
           );
         },

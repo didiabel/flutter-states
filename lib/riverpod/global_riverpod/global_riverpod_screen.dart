@@ -43,15 +43,6 @@ class _GlobalRiverpodScreenState extends ConsumerState<GlobalRiverpodScreen>
             Tab(text: 'Episodes'),
           ],
         ),
-        actions: [
-          MaterialButton(
-            color: Colors.orange,
-            child: const Text("Get Data"),
-            onPressed: () {
-              ref.read(globalRiverpodState.notifier).fetchData();
-            },
-          ),
-        ],
       ),
       body: Consumer(
         builder: (context, watch, child) {
@@ -61,15 +52,30 @@ class _GlobalRiverpodScreenState extends ConsumerState<GlobalRiverpodScreen>
             children: [
               CharacterList(
                 characters: state.characters,
-                isLoading: state.isCharactersLoading,
+                isLoading: state.loadingCharacters,
+                onDeleteCharacter: (characterId) {
+                  ref
+                      .read(globalRiverpodState.notifier)
+                      .removeCharacterById(characterId);
+                },
               ),
               LocationList(
                 locations: state.locations,
-                isLoading: state.isLocationsLoading,
+                isLoading: state.loadingLocations,
+                onDeleteLocation: (locationId) {
+                  ref
+                      .read(globalRiverpodState.notifier)
+                      .removeLocationById(locationId);
+                },
               ),
               EpisodeList(
                 episodes: state.episodes,
-                isLoading: state.isEpisodesLoading,
+                isLoading: state.loadingEpisodes,
+                onDeleteEpisode: (episodeId) {
+                  ref
+                      .read(globalRiverpodState.notifier)
+                      .removeEpisodeById(episodeId);
+                },
               ),
             ],
           );
