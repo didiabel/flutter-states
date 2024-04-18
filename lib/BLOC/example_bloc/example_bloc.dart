@@ -15,7 +15,7 @@ class BLOC extends Bloc<BLOCEvent, BLOCState> {
 
 //
     on<LoadLocationsEvent>((event, emit) async {
-      emit(state.copyWith(locations: [], loadingLocations: true));
+      emit(state.copyWith(loadingLocations: true));
 
       try {
         final locations = await api.getLocations();
@@ -44,6 +44,7 @@ class BLOC extends Bloc<BLOCEvent, BLOCState> {
     on<RemoveLocationEvent>((event, emit) async {
       final newLocations =
           state.locations.where((location) => location.id != event.id).toList();
+
       emit(state.copyWith(locations: newLocations));
     });
 

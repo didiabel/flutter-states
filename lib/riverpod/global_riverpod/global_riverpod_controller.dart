@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterstates/BLOC/example_bloc/example_bloc_state.dart';
 import 'package:flutterstates/apis/apis.dart';
+import 'package:flutterstates/models/location.dart';
 
+//StateNotifier
 class MyStateController extends StateController<BLOCState> {
   MyStateController(super.state);
 
@@ -15,6 +17,12 @@ class MyStateController extends StateController<BLOCState> {
     } catch (error) {
       log('$error');
     }
+  }
+
+  Future<List<Location>> fetchLocations2() async {
+    Future.delayed(const Duration(seconds: 3));
+
+    return state.locations;
   }
 
   void fetchEpisodes() async {

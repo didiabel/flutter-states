@@ -69,6 +69,7 @@ class _RiverpodScreenState extends ConsumerState<RiverpodScreen>
           Consumer(
             builder: (context, watch, child) {
               final locations = ref.watch(locationsStateProvider);
+
               return LocationList(
                   locations: locations,
                   onDeleteLocation: (locationId) {

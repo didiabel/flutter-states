@@ -53,7 +53,10 @@ class _GlobalRiverpodScreenState extends ConsumerState<GlobalRiverpodScreen>
               CharacterList(
                 characters: state.characters,
                 isLoading: state.loadingCharacters,
-                onDeleteCharacter: (characterId) {
+                onDeleteCharacter: (characterId) async {
+                  final espero = await ref
+                      .read(globalRiverpodState.notifier)
+                      .fetchLocations2();
                   ref
                       .read(globalRiverpodState.notifier)
                       .removeCharacterById(characterId);
